@@ -18,5 +18,11 @@ router.post('/', (req, res) => {
         .catch(err => console.log('There was an error', err));
 });
 
+router.delete('/:id', (req, res) => {
+    Item.findById(req.params.id)
+        .then(item => item.remove().then(() => res.json({success: true})))
+        .catch(err => res.status(404).json({success: false, err}));
+});
+
 
 module.exports = router;
