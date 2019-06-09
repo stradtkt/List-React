@@ -9,5 +9,14 @@ router.get('/', (req, res) => {
         .catch(err => console.log('There was an error', err));
 });
 
+router.post('/', (req, res) => {
+    const newItem = new Item({
+        name: req.body.name
+    });
+    newItem.save()
+        .then(item => res.json(item))
+        .catch(err => console.log('There was an error', err));
+});
+
 
 module.exports = router;
